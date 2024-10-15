@@ -56,7 +56,7 @@ This project is a TypeScript application that performs a periodic request to fet
    1. Make sure you have the following `docker-compose.yml` file:
 
    ```yaml
-   version: '3'
+   version: '1'
    services:
      mongo:
        image: mongo:latest
@@ -101,24 +101,7 @@ This project is a TypeScript application that performs a periodic request to fet
    const mongoUri: string = 'mongodb://mongo:27017/eos_db';
    ```
 
-4. **Wait for MongoDB**:
-
-   If the MongoDB container is not ready by the time the application tries to connect, consider using a script like `wait-for.sh` to delay the app startup until MongoDB is available. Here is an example of a basic script that checks for MongoDB availability:
-
-   ```bash
-   #!/bin/sh
-
-   # Wait for MongoDB to be available
-   until nc -z mongo 27017; do
-     echo "Waiting for MongoDB..."
-     sleep 2
-   done
-
-   # Start the application after MongoDB is ready
-   npm start
-   ```
-
-5. **Check the logs**:
+4. **Check the logs**:
 
    Use the following command to check the logs of the application:
    
