@@ -1,0 +1,28 @@
+version: '1'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: eos_db
+    networks:
+      - app-network
+  app:
+    build: .
+    container_name: eos_app
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: npm start
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
