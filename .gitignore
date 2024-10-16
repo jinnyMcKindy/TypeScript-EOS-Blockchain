@@ -1,0 +1,4 @@
+/node_modules
+/docker/mongodb_data
+/dist
+/data
