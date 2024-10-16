@@ -28,7 +28,7 @@ type BulkOperation = {
         filter: { trx_id: string },
         update: { 
             $setOnInsert: { trx_id: string, block_time: string, block_num: number },
-            $set: { block_time: string, block_num: number
+            $set: { block_time: string, block_num: number }
         },
         upsert: boolean
     }
@@ -56,13 +56,13 @@ async function fetchAndStoreActions(): Promise<void> {
             const { action_trace: { trx_id }, block_time, block_num } = action;
             return {
             updateOne: {
-                filter: { trx_id },
-                update: { 
-                    $setOnInsert: { trx_id, block_time, block_num }, 
-                    $set: { block_time, block_num }, 
-                },
-                upsert: true
-            }
+                    filter: { trx_id },
+                    update: { 
+                        $setOnInsert: { trx_id, block_time, block_num }, 
+                        $set: { block_time, block_num } 
+                    },
+                    upsert: true
+                }
             };
         });
 
